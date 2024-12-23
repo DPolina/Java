@@ -1,0 +1,104 @@
+import java.util.Scanner;
+
+public class Main {
+    
+    public static Scanner numscan = new Scanner(System.in);
+    public static Scanner wordscan = new Scanner(System.in);
+    public static int integerArray[] = { 12, 13, 32, 35, 46, 68, 71, 73, 88, 94, 99, 100 };
+    public static String superheroes[] = {  "Deadpool", "Ant-Man", "Hulk", "Spider-Man", "Venom", "Iron Man", "Capitan America", "Superman", "Doctor Strange", "Thor" };
+    public static double power[] = { 0.10, 0.15, 0.20, 0.30, 0.35, 0.40, 0.50, 0.70, 0.80, 0.90 };
+
+    public static void main(String[] args) {
+        
+        printIntegerArray();
+        while (true) {
+            System.out.print("\nEnter a number: ");
+            int number = numscan.nextInt();
+            int index = binarySearch(integerArray, number);
+            if (index == -1) {
+            System.out.println("\nI am sorry this number is not in our list. Please try again.");     
+            } else {
+                System.out.println("\nI found it at index number: " + index);
+            }
+            if (search() == false) {
+                break;
+            }
+        }
+        while (true) {
+            System.out.print("\nEnter a power level (0.00 - 0.99): ");
+            double powerLevel = numscan.nextDouble();
+            int index = binarySearch(power, powerLevel);
+            if (index == -1) {
+            System.out.println("\nI am sorry this number is not in our list.");     
+            } else {
+                System.out.println("\nYou have chosen " + superheroes[index] + " to be your sidekick.");
+            }
+            if (search() == false) {
+                break;
+            }
+        }
+        
+    } // end main
+    
+    public static int binarySearch(int[] integerArray, int number) {
+        int low = 0;
+        int high = integerArray.length - 1;
+        while (low <= high)
+        {
+            int mid = (low + high) / 2;
+            if (integerArray[mid] == number) {
+                return mid;
+            } else if(integerArray[mid] < number)
+            {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return -1;
+    } // end binarySearch (integer)
+    
+    public static int binarySearch(double[] power, double number) {
+        int low = 0;
+        int high = power.length - 1;
+        while (low <= high)
+        {
+            int mid = (low + high) / 2;
+            if (power[mid] == number) {
+                return mid;
+            } else if(power[mid] < number)
+            {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return -1;
+    } // end binarySearch (double)
+    
+    public static void printIntegerArray() {
+        for (int i = 0; i < integerArray.length; i++) {
+            System.out.print(integerArray[i] + " ");
+        }
+    }
+    
+    public static void printPower() {
+        for (int i = 0; i < power.length; i++) {
+            System.out.print(power[i] + " ");
+        }
+    }
+    
+    public static boolean search() {
+        String search;
+        do {
+            System.out.print("Continue searching? (y/n) ");
+            search = wordscan.nextLine().toLowerCase();
+        } while (!(search.equals("y") || search.equals("n")));
+            
+        if (search.equalsIgnoreCase("y")) {
+            return true;
+        }
+        return false;
+    }
+    
+} // end class

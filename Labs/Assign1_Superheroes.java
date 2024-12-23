@@ -30,7 +30,7 @@ public class Main {
             "Daredevil", 
             "Wonder Woman"
         };
-         String[] superpower = {
+        String[] superpower = {
             "Spider web", 
             "Armoured battlesuit", 
             "Speed", "Sharpshooting", 

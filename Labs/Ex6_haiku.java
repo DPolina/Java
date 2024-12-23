@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Calendar;
 
-public class Main {
+public class Haiku {
     
     public static int generateNum(int minValue, int maxValue) {
         return (int) (Math.random()*(maxValue - minValue) + minValue);

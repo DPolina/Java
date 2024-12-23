@@ -1,0 +1,63 @@
+public class Main {
+    
+    public static void main(String[] args) {
+        
+        downTriangle(6);
+        System.out.println("");
+        upTriangle(6);
+        System.out.println("");
+        halfTree(6);
+        
+    } // end main
+    
+    public static void downTriangle(int n) {
+        
+        if (n == 0) {
+            return;
+        }
+        
+        for (int i = 1; i <= n; i++) { 
+            System.out.print("*"); 
+        }
+        System.out.println(""); 
+        
+        downTriangle(n - 1);
+    }
+    
+    public static void upTriangle(int n) {
+        
+        if (n == 0) {
+            return;
+        }
+        
+        upTriangle(n - 1);
+        
+        for (int i = 1; i <= n; i++) { 
+            System.out.print("*"); 
+        }
+        System.out.println(""); 
+    }
+    
+    public static void halfTree(int n) {
+        
+        if (n == 0) {
+            return;
+        }
+        
+        if (n > 0) {
+            halfTree(-n);
+            System.out.print("#");
+        } else {
+            halfTree(n + 1);
+            for (int i = 0; i < -n; i++) {
+                if (i == 0) {
+                    System.out.print("#"); 
+                } else {
+                    System.out.print("##");
+                }
+            }
+            System.out.println(""); 
+        }
+    } 
+    
+}

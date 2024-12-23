@@ -1,0 +1,46 @@
+import java.util.Scanner; // Step 1
+
+public class Main {
+    
+    public static void main(String[] args) {
+        Scanner numscan = new Scanner(System.in); // Step 2
+        Scanner wordscan = new Scanner(System.in);
+        
+        String name; // Step 3
+        System.out.println("What is your name?");
+        name = wordscan.nextLine(); // step 4
+        
+        int number;
+        System.out.println("What number do you want to factorialize?");
+        number = numscan.nextInt();
+        
+        factorialize(number);
+        
+         // String school;
+         // System.out.println("What... ");
+         // int num = 8;
+         // factorialize(num);
+    }
+
+    public static void Main(String[] args) {
+        int num = 6;
+        int factorial = 1;
+        for(int i = 1; i <= num; i += 1){
+            factorial = factorial * i;
+            System.out.println(factorial);
+            }
+    }
+
+
+    public static void factorialize(int num) {
+        if(num < 17) {
+            int factorial = 1;
+            for(int i = 1; i <= num; i += 1){
+            factorial = factorial * i;
+            }
+            System.out.println(factorial);
+        } else {
+            System.out.println("Please enter a number less than 17");
+        }
+    } // end factorialize
+}

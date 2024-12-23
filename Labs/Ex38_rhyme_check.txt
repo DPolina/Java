@@ -1,0 +1,16 @@
+public class Main {
+
+    public static void main(String[] args) {
+        
+        System.out.println(rhymeCheck("apple", "egg"));
+        System.out.println(rhymeCheck("apple", "apple"));
+    }
+    
+    public static String rhymeCheck(String firstString, String secondString) {
+        if (firstString.substring(firstString.length() - 3).equalsIgnoreCase(secondString.substring(secondString.length() - 3))) {
+            return "Letters match";
+        } else {
+            return "Letters does not match";
+        }
+    }
+}
