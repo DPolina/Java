@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SimpleCalculatorTest {
-    // Testing Add method
+    
     @Test
     public void TestingAddMethod() {
         assertTrue(SimpleCalculator.add(2,2) == 4); // 2 plus 2 should equal 4 (but 2 times 2 is also 4!)
