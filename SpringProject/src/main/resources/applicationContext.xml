@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Path to the properties file -->
+    <context:property-placeholder location="classpath:myApp.properties"/>
+    
+    <bean id = "myPet"
+            class = "com.palina.springproject.Dog">
+    </bean>
+    
+    <bean id = "myPerson"
+            class = "com.palina.springproject.Person"> 
+        <!-- DI using constructor -->
+        <!-- <constructor-arg ref="myPet"/> -->
+        
+        <!-- DI using setter -->
+        <property name = "pet" ref = "myPet"/> 
+        <!-- pet -> setPet (p -> P, set + Pet = setPet) -->
+        
+        <!-- String and numer Injection -->
+        <!-- (Hardcoded implementation) -->
+        <!--<property name = "surname" value = "Parker"/>
+            <property name = "age" value = "28"/> -->
+            
+        <!-- Using properties file -->
+        <property name = "surname" value = "${person.surname}"/>
+        <property name = "age" value = "${person.age}"/>
+    </bean>
+</beans>
