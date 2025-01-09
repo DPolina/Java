@@ -5,11 +5,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component("personBin")
+//@Component("personBean")
 public class Person {
     // (3. @Autowired для поля, рефлексия)
-    @Autowired
-    @Qualifier("dog")
+    //@Autowired
+    //@Qualifier("dog")
     private Pet pet;
     @Value("${person.surname}")
     private String surname;
@@ -18,16 +18,16 @@ public class Person {
     
     // DI using constructor; Annotations:
     // (1. @Autowired для конструктора)
-//    @Autowired
-//    //public Person(@Qualifier("dog") Pet pet) {
-//    public Person(Pet pet) {
-//        System.out.println("[Person bean is created]");
-//        this.pet = pet;
-//    }
-    
-    public Person() {
+    //@Autowired
+    //public Person(@Qualifier("catBean") Pet pet) {
+    public Person(Pet pet) {
         System.out.println("[Person bean is created]");
+        this.pet = pet;
     }
+    
+//    public Person() {
+//        System.out.println("[Person bean is created]");
+//    }
     
     // DI using setters:
     // (2. @Autowired для сеттера)

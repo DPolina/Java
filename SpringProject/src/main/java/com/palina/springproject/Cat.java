@@ -2,7 +2,7 @@ package com.palina.springproject;
 
 import org.springframework.stereotype.Component;
 
-@Component("catBean")
+//@Component("catBean")
 //@Component
 public class Cat implements Pet {
     
