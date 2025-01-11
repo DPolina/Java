@@ -1,31 +1,46 @@
 package aop.aspects;
 
-import org.springframework.stereotype.Component;
+import aop.Book;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-public class LoggingAspect { // Аспект-класс для логирования
+@Order(10)
+public class LoggingAspect {
     
-    // То, что в скобках - Pointcut.
-    //@Before("execution(public void getBook())")       // Works for all classes
-    //@Before("execution(public void aop.UniversityLibrary.getBook())") // Only for UniLibrary
-    //@Before("execution(public void get*())")          // Works for all methods which names start with "get"
-    //@Before("execution(public void getBook(String))") // Only with String parameter
-    //@Before("execution(public void *(*))")            // Any method with any single parameter
-    //@Before("execution(public void *(..))")             // Any method with any number of parameters
-    
-    @Before("execution(public void getBook(aop.Book))") 
-    public void beforeGetBookAdvice(){
-        System.out.println("beforeGetBookAdvice: Attempt to get a book.");
-        // Advice - метод в аспект-классе, который определяет, что должно 
-        // произойти при вызове метода getBook.
-    }
-    
-    @Before("execution(* returnBook())") // For all return types
-    // @Before("execution(public void returnBook())")
-    public void beforeReturnBookAdvice(){
-        System.out.println("beforeReturnBookAdvice: Attempt to return a book.");
+    @Before("aop.aspects.MyPointcuts.allAddMethods()")
+    public void beforeAddLoggingAdvice(JoinPoint joinPoint){
+        
+        MethodSignature methodSignature = (MethodSignature)joinPoint.getSignature();
+        System.out.println("methodSignature = " + methodSignature);
+        System.out.println("methodSignature.getMethod() = " 
+                + methodSignature.getMethod());
+        System.out.println("methodSignature.getReturnType() = " 
+                + methodSignature.getReturnType());
+        System.out.println("methodSignature.getName() = " 
+                + methodSignature.getName());
+        
+        if(methodSignature.getName().equals("addBook")){
+            Object[] arguments = joinPoint.getArgs();
+            for(Object obj:arguments){
+                if (obj instanceof Book){
+                    Book myBook = (Book) obj;
+                    System.out.println("Book info: name - " + myBook.getName() +
+                            ", author - " + myBook.getAuthor() +
+                            ", year of publishing - " + myBook.getYear());
+                }
+                else if(obj instanceof String){
+                    System.out.println("Book was added to the Library by " + obj);
+                }
+            }
+        }
+        
+        System.out.println("beforeAddLoggingAdvice: Logging of attempts to get an item.");
+        System.out.println("-------------------------------------------");
     }
 }
